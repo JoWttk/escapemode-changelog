@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Escape Mode | CHANGE LOG</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            color: #eee;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0af;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        h1 a {
+            color: #0af;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        h1 a:hover {
+            color: #08c;
+            text-decoration: underline;
+        }
+
+        .version {
+            background: #1e1e1e;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(10, 170, 255, 0.2);
+        }
+
+        .version-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .version-number {
+            font-weight: 700;
+            font-size: 1.3em;
+            color: #0af;
+        }
+
+        .version-date {
+            font-size: 0.9em;
+            color: #999;
+            font-style: italic;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        /* Color classes */
+        .added {
+            color: #4CAF50; /* verde */
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        .working {
+            color: #2196F3; /* azul */
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        .fixed {
+            color: #FFEB3B; /* amarelo */
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        .removed {
+            color: #F44336; /* vermelho */
+            font-weight: 700;
+            margin-right: 6px;
+        }
+
+        /* Botão estilizado */
+        button {
+            background-color: #0af;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 6px 14px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 10px;
+            user-select: none;
+        }
+
+        button:hover {
+            background-color: #08c;
+        }
+
+        button:active {
+            background-color: #06a;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <a href="https://jowtk4.itch.io/escape-mode" target="_blank" rel="noopener noreferrer">Escape Mode</a> | Change Log
+    </h1>
+
+    <section class="version">
+        <div class="version-header">
+            <div class="version-number">v.BeforeDemo</div>
+            <div class="version-date">05/19/2025</div>
+        </div>
+        <ul>
+            <li><span class="added">ADDED -</span> Change Log HTML</li>
+            <li>
+                <span class="added">ADDED -</span> Play sound upon item pickup 
+                <button id="soundBtn">Listen</button>
+            </li>
+            <li><span class="added">ADDED -</span> Controller/Keyboard system</li>
+            <li><span class="added">ADDED -</span> On join menu animation</li>
+            <li><span class="working">WORKING -</span> Advanced fight system</li>
+            <li><span class="fixed">FIXED -</span> Controller not working</li>
+            <li><span class="fixed">FIXED -</span> Minor UI bugs</li>
+            <!-- <li><span class="removed">REMOVED</span> - Deprecated feature X</li> -->
+        </ul>
+    </section>
+
+    <section class="version">
+        <div class="version-header">
+            <div class="version-number">v.BeforeDemo2</div>
+            <div class="version-date">05/20/2025</div>
+        </div>
+        <ul>
+            <li><span class="added">ADDED -</span> Hotbar icons</li>
+            <li><span class="added">ADDED -</span> Centered texts on the hotbar</li>
+        </ul>
+    </section>
+
+    <section class="version">
+        <div class="version-header">
+            <div class="version-number">v.BeforeDemo3</div>
+            <div class="version-date">05/21/2025</div>
+        </div>
+        <ul>
+            <li><span class="added">ADDED -</span> Pause menu</li>
+            <li><span class="removed">REMOVED -</span> On join menu animation</li>
+        </ul>
+    </section>
+
+    <audio id="itemSound" src="assets/sounds/effects/won-something.mp3"></audio>
+
+    <script>
+        const sound = document.getElementById('itemSound');
+        const btn = document.getElementById('soundBtn');
+
+        btn.addEventListener('click', () => {
+            if (sound.paused) {
+                sound.currentTime = 0; // Reinicia o som
+                sound.play().catch(err => {
+                    console.log('Erro ao tentar tocar som:', err);
+                });
+                btn.textContent = 'Pause';
+            } else {
+                sound.pause();
+                btn.textContent = 'Listen';
+            }
+        });
+
+        sound.addEventListener('ended', () => {
+            btn.textContent = 'Listen';
+        });
+    </script>
+</body>
+</html>
